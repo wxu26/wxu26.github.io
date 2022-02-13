@@ -136,7 +136,7 @@ footer{
 
 /* About */
 section#about{
-	max-width: 600px;
+	max-width: 500px;
 }
 #about .profile{
 	text-align: center;
@@ -146,10 +146,10 @@ section#about{
 	width: 150px;
 	border-radius: 75px;
 }
-section#contact{
+/*section#contact{
 	max-width: 600px;
 	text-align: center;
-}
+}*/
 
 /* Photos */
 section.photo{
