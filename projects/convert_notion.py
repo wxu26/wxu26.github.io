@@ -28,7 +28,7 @@ with open("index.html", 'r', encoding='utf-8') as f:
     content = f.read()
 
 # update reference
-content = content.replace(name.replace(" ","%20"), "figures")
+content = content.replace(name.replace(" ","%20").replace("'","&#x27;"), "figures")
 
 # update tab title following folder name
 new_title = os.path.basename(os.getcwd()).replace("_"," ")
