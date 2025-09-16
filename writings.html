@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal website of Wenrui Xu. This page contains writings on large language model interpretability and/or astrophysics.">
+    <title>Wenrui Xu</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/include.js"></script>
+</head>
+<body>
+    <div data-include="header.html"></div>
+
+    <main class="main-content">
+        <div class="content">
+
+
+<div class="article-overview">
+<h1><a href="/writings/LLM_interpretability.html">A biased overview of LLM interpretability</a></h1>
+<p>My attempt to explain the goal of LLM interpretability research, how it connects to existing studies, and some interesting results and applications.<p>
+</div>
+
+<div class="article-overview">
+<h1><a href="/writings/42.html">42: a parable on interpretability</a></h1>
+<p>An excerpt from <i>The Hitchhiker’s Guide to the Galaxy</i> (1979), which also reads as a parable on the importance of AI model interpretability.<p>
+</div>
+
+<div class="article-overview">
+<h1><a href="/writings/feature_steering.html">Model steering with SAE features: In-place unlearning and reducing interference</a></h1>
+<p>A small independent research project on interpretability. It has been shown that perturbing features in a sparse autoencoder (SAE) can effectively steer model behavior. But how does this interfere with the rest of the model, and can we suppress such interference? To answer these questions, I train a small transformer on Shakespeare scripts and use a simple unlearning task to experiment with SAE feature steering. I find that the geometric interference due to feature superposition (non-orthogonality in latent space) turns out to be quite weak, in line with my previous findings about the high efficiency of superposition. Meanwhile, the main source of interference is semantic interference due to target/non-target features being used by the model in non-target/target contexts. Semantic interference can be reduced by introducing activation thresholds that leave target features unperturbed in non-target contexts.<p>
+</div>
+
+<div class="article-overview">
+<h1><a href="/writings/feature_geometry.html">High-dimensional feature geometry in a one-layer language model</a></h1>
+<p>A small independent research project on interpretability. I test my previous insights about feature geometry on a feature set extracted from a single-layer language model. Just like toy models, features show approximate equipartition of all possible directions in the latent space and remain near-orthogonal thanks to the high efficiency of superposition; but unlike toy models, features show rich local lower-dimensional substructures. (Imagine a high-dimensional version of the cosmic web.) These substructures are formed by high-frequency features repelling nearby low-frequency features, squeezing them into filaments. This effect is more pronounced for correlated features, causing low-frequency, highly correlated features to show strong clustering. <p>
+</div>
+
+<div class="article-overview">
+<h1><a href="/writings/sparse_superposition.html">Superposition of sparse features: Exponential embedding efficiency through hypersphere packing</a></h1>
+<p>A small independent research project on interpretability. This is an extension to Anthropic's <i>Toy Models of Superposition</i> paper to investigate the asymptotic behaviors at infinitely many and infinitely sparse features. My main finding is that in models with more than a few latent-space dimensions, features efficiently use all available directions in the latent space, and feature directions form a nearly uniform lattice on the surface of a high-dimensional hypersphere. (Imagine a high-dimensional sea urchin.) The problem of feature packing resembles the hypersphere packing problem in mathematics, and exponentially many features can be embedded without significant interference.<p>
+</div>
+        
+
+
+        </div>
+    </main>
+
+    <div data-include="footer.html"></div>
+</body>
+</html>

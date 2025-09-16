@@ -1,0 +1,125 @@
+/* Global Styles */
+
+html, body {
+    height: 100%;
+    background-color: rgb(250, 249, 245);
+}
+
+body {
+    font-family:"Baskerville", Georgia, Cambria, "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+a, a:visited {
+    color: inherit;
+}
+a:hover, a:active {
+    color: #008080;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.site-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    /*color: #333;*/
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+    /*margin-top: 40px;*/
+    margin-top: auto;
+}
+
+/* Content styles */
+.main-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.content-article { /* for blog posts etc. */
+    width: 90%;
+    min-width: 300px;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.content { /* for front page etc.; narrower */
+    width: 70%;
+    min-width: 300px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.content-article figcaption { /* disable figcaption */
+    display: none;
+}
+
+.content-article figure {
+    margin: 1em 0;
+}
+
+.content-article img {
+    max-width: 100%;
+    /* specify desired width inline */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.content-article h1, .content-article h2, .content-article h3 {
+    font-weight: 600;
+    margin: 1em 0 0 0;
+}
+
+.content-article h1{
+    margin: 1.5em 0 0 0;
+}
+
+.content-article strong {
+    font-weight: 600;
+}
+
+.article-overview{
+    padding: 1em 0;
+    margin: 1em 0;
+}
+
+.article-overview h1{
+    font-weight: 600;
+    margin: 0;
+}
+
+.article-overview p{
+    margin: 0.5em 0 0 0;
+}

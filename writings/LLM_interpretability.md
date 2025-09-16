@@ -1,0 +1,133 @@
+# A biased overview of LLM interpretability
+
+Created: August 14, 2025 7:00 AM
+
+I've long avoided telling friends about my interest in LLM interpretability because I couldn't find a satisfactory way to explain it. The usual introductions stay frustratingly vague—"opening the black box," "understanding the inner workings"—while more technical discussions often jump straight into methodological details. What's missing is something between these extremes, something that expresses the vague goal of interpretability in more concrete terms that directly connects to methodologies and results.
+
+This article attempts to fill that gap. As the title suggests, it's highly biased. I will focus exclusively on what I find most compelling (roughly speaking, mechanistic interpretability of LLMs). Framing everything through my own lens, I may be reinventing wheels or taking research out of context. But this biased perspective is perhaps not all bad. Scientific fields—especially young fields like interpretability—progress and define themselves through merging a diversity of biased perspectives.
+
+## What do we want? Why is it hard?
+
+In my view, LLM interpretability research is fundamentally about the following question: **Given a model, how do we find a good representation of it that clearly show what it knows and how it uses that knowledge?**
+
+### Why representation matters
+
+Think about understanding a tree. You could describe it as a bunch of atoms and molecules. Or as collections of cells. Or as organs like leaves, branches, and trunk. Or just as "a tree." All of these are valid ways to represent the same system, but each is useful for different purposes. When you're pruning, thinking about branches makes sense. When studying photosynthesis, you need to think about cells and molecules.
+
+The power lies in the freedom to choose the right representation. A good representation highlights relevant information while hiding unnecessary complexity.
+
+### What makes a good representation
+
+For LLMs, we're stuck with two unhelpful extremes: examining trillions of individual parameters and activations (too detailed) or treating the whole model as a black box (too vague). To gain more insight on what the model knows and how it “thinks”, we need a representation where the model consists of elements that individually make sense to human.
+
+More concretely, this means finding mathematical functions that map the model’s parameters and activations to a new set of variables, where each variable represents some interpretable concept (knowledge, rules, etc.) and the value of a variable represents whether the corresponding concept is invoked when the model decides the next output token.
+
+### The challenge
+
+The challenge in finding a good representation for LLMs first comes from defining a good representation. "Interpretable" and "making sense to human" are subjective concepts, making it hard to define mathematically what constitutes a good representation.
+
+A further challenge lies in finding new representations. With trees, you can naturally find more granular representations by decomposing large objects into smaller pieces or find more abstract representations by grouping similar or nearby components. This works because of physics: what makes up the tree mostly interact with its neighbors. A leaf doesn't care about another leaf on another branch.
+
+LLMs don't work this way. Sure, there are some modular pieces at the highest level (attention layers, feed-forward blocks), but within those pieces everything is densely connected to everything else. Information flows through complex webs that you can't just cut apart cleanly. Everything influences everything else. There is no obvious way to generate a reasonable new representation based on what we already have.
+
+(The same problem exists in other complex systems with global coupling, like plasma physics or gravitational systems with many bodies. That’s one of the reasons why I did research on these topics before and do LLM interpretability research now.)
+
+## An emerging paradigm: from sparsity to interpretable features
+
+### Sparsity as a prerequisite of interpretability
+
+While a precise definition of "interpretable" remains elusive, there is at least one prerequisite of interpretability that can be expressed mathematically: interpretable representations needs to be sparse.
+
+This follows from a simple fact: LLMs know too much. If interpretability required simultaneously understanding everything an LLM knows, it would be impossible. But we don’t need to understand everything at once. At a minimum, we only need to understand the tiny subset of the model’s knowledge that is relevant to the current conversation. In other words, we need to isolate currently relevant information from the model's complete knowledge base.
+
+This introduces the requirement of sparsity. In an interpretable representation, the elements of this representation need to activate sparsely; you shouldn’t need all the elements to understand a particular conversation.
+
+### Extracting sparse features
+
+Requiring sparsity provides a concrete starting point. We can now search for functions that map model parameters and activations to sparsely activating elements.
+
+How do we find such functions? Mostly by heuristics. First, activations is likely a better choice than parameters since they contain information about specific inputs and outputs. For transformers, we may narrow our focus further to residual stream activations—the internal workspace where each transformer block reads and writes information. (Other locations, such as the activations passed from the attention block to the feed-forward block, have also been used in studies.)
+
+Now comes a leap of faith: we assume these activations are sparse linear combinations of some "feature" vectors. This is certainly not guaranteed to work, but it is a somewhat natural assumption because of its simplicity and its alignment with the largely linear architecture of transformers. If this linear assumption is true, we can identify features using tools like sparse autoencoders and cross-layer transcoders. This transforms finding a sparse representation into a well-defined math problem. (There are many interesting math problems surrounding this subject, but I won’t go into this in more detail.)
+
+### The success of feature-based methods: interpretability comes for free
+
+This feature-based methodology has produced impressive results. To draw a few examples from Anthropic's recent studies:
+
+- Extracted features are often naturally interpretable. Inspections of when features are activated and how they affect the output show features with clear, unique meanings that range from concrete concepts (famous people, places) to abstract ones (code errors, sycophantic praise ← this one is particularly fun).
+- Manipulating feature activations steers model behavior predictably, including "personality" changes.
+- For short questions, entire reasoning processes can be mapped out in terms of which features are activated and how they promote/suppress each other’s activation. The "thought processes" revealed in these feature “circuits” reveal logical thinking similar to us and the ability to plan ahead—deciding what to write later, then figuring out how to get there. (Interestingly, the ability to plan ahead also means that the current autoregressive architecture may not be the most efficient choice, as the same plan-ahead will be executed multiple times.)
+
+It is worth noting that these features are extracted requiring only sparsity; interpretability seems to come for free. But why? In the following sections I will try to provide some intuition on why this works and highlight some complications and challenges.
+
+### Why are sparse features naturally interpretable?
+
+I don’t know if any good explanation exist in the literature, but my best guess is that it reflects a deeper parallel between LLMs and human cognition.
+
+Like LLMs, humans know too much. You don't want to recall everything from high school when checking today's weather. For efficient operation, our minds must organize knowledge into concepts that activate sparsely during thought processes.
+
+This creates a parallel: similar information (real-world data/training material) gets compressed in complex neural networks (brains/models) and represented as sparse concepts (mental concepts/model features). Both systems likely do this near-optimally, thanks to evolution (for us) and careful training (for LLMs). This creates a situation that resembles convergent evolution in biology: different species optimizing for similar tasks independently reach similar solutions. It is therefore not too surprising if the sparsest representation of a LLM happens to align quite well with the sparse concepts we extracted from our knowledge.
+
+This story comes with several caveats. There are major uncertainties on whether the underlying knowledge in training data sufficiently resembles human knowledge, and whether there is a single optimal way to store knowledge in neural networks regardless of the physical architecture of the network. Given these uncertainties, my attempted explanation might better be considered as a hypothesis.
+
+### Superposition and the origin of model efficiency
+
+One interesting fact I omitted is that the extracted features often outnumber the dimensions of the activations they come from—a phenomenon called "superposition." This should alarm anyone familiar with linear algebra, as it means that features form an overcomplete basis and the decomposition of activations into feature amplitudes is not unique.
+
+Sparsity resolves this by providing additional constraints. (An informative prior, in more Bayesian terms.) We can resolve the degeneracy by selecting the sparsest feature combination (minimizing L1 norm). This allows a n-D activation vector to encode >>n features without breaking information theory.
+
+High-dimensional geometry also helps: exponentially many near-orthogonal vectors exist in high-dimensional spaces, so simply projecting the activation vector into features already retrieves feature amplitudes with little noise when features activate sparsely.
+
+Overall, superposition can be seen as a way to very efficiently compress information with little (but nozero) noise. This makes it crucial for LLM efficiency. If we force a model to not have any superposition, the number of features it can remember can be exponentially less. Understanding superposition's efficiency—how many features (or connections between features) can be encoded while maintaining error tolerance—could be key to understanding performance and scaling laws.
+
+This also provides another way to conceptualize interpretability. Superposition causes information to be efficiently compressed but also too tangled to be interpretable, and we want to undo this compression. (As a result, an interpretable representation is likely larger than the original model, and this poses an engineering challenge.)
+
+### A comeback of symbolism
+
+In the early days of machine learning there was a competition between symbolism and connectionism. Symbolic models use rules and symbols to represent knowledge and perform logical reasoning, while connectionist models feature a black box of interconnected (artificial) neurons. The current majority opinion is that connectionism has clearly won and symbolism has become obsolete.
+
+However, the features we find in models essentially "translate" connectionist LLMs into symbolic models. This allows us to inspect the defeat of symbolism through a new lens: One may in fact achieve intelligence through a symbolic model, but the main bottleneck is the size of the model. The number of symbols required is so large that they are best stored in a highly compressed state in a neural network.
+
+### Caveats and challenges
+
+The initial success of finding features in models is quite encouraging, but these results also reveal a number of caveats and challenges.
+
+- Not all features are interpretable and monosemantic. Is this a generic property of LLMs or a limitation of current methodologies? Can we extract enough interpretable features to fully explain model behavior? On a related note, can we extrapolate the current methodologies to reduce the whole network to some symbolic network that contains more information on how features affect each other?
+- Interpreting features requires somewhat subjective inspection of activation patterns and model effects. How do we automate this process, and establish objective criteria for the quality of interpretation while avoiding confirmation bias?
+- How to overcome computation bottlenecks for extracting features from larger models or mapping reasoning processes for longer contexts? What if feature-based reasoning maps are too large to be reviewed by a human?
+
+Despite the challenge they pose, being able to phrase these well-defined problems and transforming the vague problem of interpretability into concrete engineering problems and mathematical puzzles is in itself a significant progress. 
+
+## The future
+
+Despite remaining challenges, I think it is reasonable to say that we are progressing rapidly in understanding how LLMs store and use information, and fully interpretable representations of production-grade LLMs may be on the horizon. This has implications for many applications.
+
+### Auditing and steering models for safety
+
+Most of existing AI safety research treats models as black boxes and only probe or modify them externally. This approach has a fundamental flaw: black-box models can only be characterized by sampling behavior on different inputs, but the input parameter space is so vast and complex that comprehensive sampling is impossible. We can never confidently claim a model can't do something harmful across all possible inputs.
+
+Feature-based interpretability could overcome this limitation by providing complete model representations. In theory, we could examine all features to determine if a model has harmful capabilities. This is expensive, but still far cheaper than sampling all possible inputs.
+
+Challenges remain: determining whether features contribute to unsafe behavior and identifying emergent behaviors from multi-feature interactions. But feature-based interpretability currently seems like the only path that might ultimately work for comprehensive safety auditing.
+
+This approach also enables precise, reliable, and inexpensive correction of known failure modes by pruning associated features or their connections.
+
+### Making better models
+
+Beyond safety, predictable feature-based steering has many applications. We could tune model "character" for specific tasks—making coding agents more reflective and accuracy-focused, for example. More cynically, this might enable advertisement insertion in chatbots. (That might be the one good reason against interpretability research.)
+
+Interpretability may also illuminate how model behavior is constrained by factors like compute and parameter count. Right now, our best knowledge on this subject comes from empirical scaling laws, but we don’t really understand whether they come from. Feature-based interpretability gives us a better handle on that. We know that the model is a noisy compression of features, and the large number of interconnected features is what enables the intelligent behavior of models. With that, we can decompose scaling problem into three parts: (1) how performance scales with the number of features (or which features are learned); (2) how the maximum number of features scales with model parameters and model architecture; and (3) how features are picked up during training.
+
+The first question still can only be answered in an empirical manner, and the last question seems extremely challenging to answer quantitatively. But the second question, the maximum number of features (or largest feature network) that can be compressed in the model, is mostly a well-posed math problem. (It can be converted to questions such as how one use the outer product of low-rank matrices to approximate a sparse high-rank matrix.) Solving those can bring us a big step closer to understanding the scaling laws and optimize model architecture and training procedure accordingly.
+
+Knowing exactly how knowledge fits into models and how it's used during inference could also enable better model modification. For example, one may extract features from large models, pruning irrelevant features, and compressing them into smaller networks for specialized applications.
+
+### Understanding the human mind
+
+Studies have established interesting parallels between LLM and human intelligence: LLMs often think through problems logically like humans rather than using completely foreign approaches. Given this parallel, one may use LLMs to better understand human minds. The main advantage of this approach is that artificial neural networks are much more convenient to work with than human neural networks. Pruning a few features in a model is so much easier (and way more ethical) than plucking out a few neurons from a human brain. This might enable a whole range of breakthroughs from studying psychopathology and neurodivergence to understanding what makes us human. (Is there anything in us that’s not in a monkey or a LLM? My guess is no.)
+
+## Parting thoughts
+
+After spending a lot of my between-jobs vacation time on this article, I’m no longer sure whether it will ever be useful to anyone. Interpretability has moved incredibly fast over the past couple of years, and it’s so hard to piece together a full picture. It’s also quite possible that everything in this article will soon become irrelevant as we switch to completely different paradigms.
+
+But one thing is certain: we are in an exciting time for interpretability research. I'm eager to see—and hopefully contribute to—what comes next.
