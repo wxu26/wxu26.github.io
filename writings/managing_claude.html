@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal website of Wenrui Xu. This page contains writings on large language model interpretability and/or astrophysics.">
+    <title>Managing Claude</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/include.js"></script>
+
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['$', '$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+    <div data-include="/header.html"></div>
+
+    <main class="main-content">
+        <div class="content-article">
+            <h1 id="claude-is-meant-to-be-managed-not-used">Claude is
+            meant to be managed, not used</h1>
+            <p>Created: November 17, 2025 7:37 PM</p>
+            <h2 id="context">Context</h2>
+            <p>Claude (and other models) have undergone steady
+            improvement during the past several years. One can say that
+            all of that is just incremental, but I believe that the
+            accumulation of these incremental improvements, particularly
+            in the ability of planning, communication, and correcting
+            its own mistakes, has recently pushed Claude beyond a
+            critical point that demands a paradigm shift in how we work
+            with it.</p>
+            <p>Specifically, we should start “managing” Claude instead
+            of “using” it. The working experience will be less like
+            being a coder with some tool to help you, but becoming a
+            manager/mentor that leads one or multiple
+            subordinates/students to perform a team project. The nature
+            of your work changes. You almost never directly execute your
+            work, but that does not come for free: you need to put extra
+            effort into management.</p>
+            <p>I am under the impression that most users and potential
+            users of Claude Code are not yet aware of this change. And
+            that’s for good reasons. First, this paradigm shift happened
+            too recently. Many would say this was marked by the release
+            of Claude Sonnet 4.5 (September 2025). Additionally, people
+            have no motivation to switch because using Claude the old
+            way still works (and it works better than before). Managing
+            Claude also requires a very different mindset and skill set
+            than just using it. I suspect this causes many to miss out
+            on the true potential of Claude.</p>
+            <h2 id="this-article">This article</h2>
+            <p>The goal of this article is to sketch out a minimal
+            example of how to manage Claude (more specifically Claude
+            Code). We want to develop a system that is flexible and
+            evolutionary. We want to put in minimal setup effort
+            beforehand and give Claude the right environment to
+            self-improve.</p>
+            <p>It would certainly be possible to build a more scalable
+            framework, and there is still much to gain by using a more
+            complex design. But I think the system I am about to present
+            strikes a good balance between Claude capability and human
+            learning cost.</p>
+            <h2 id="starting-your-first-project-a-new-project">Starting
+            your first project / a new project</h2>
+            <p>You mostly need three files:</p>
+            <ul>
+            <li>master claude.md: in your root folder, or the folder
+            that contains all your projects (there might be a different
+            preferred location for this - you could always just ask
+            Claude where it prefers this to be)</li>
+            <li>project claude.md: in project folder, one for each
+            project</li>
+            <li>project readme.md: in project folder, one for each
+            project</li>
+            <li>most of them can be empty or minimal at first; you can
+            let Claude gradually build them up and self-improve (see
+            “feedback and self-improvement”)</li>
+            </ul>
+            <h3 id="master-claude.md"><strong>Master
+            claude.md</strong></h3>
+            <ul>
+            <li>general tips on personality and style; a few I like to
+            use:
+            <ul>
+            <li>be concise, but don’t leave out important details</li>
+            <li>be a helpful coworker, feel free to push back and raise
+            questions</li>
+            <li>trust others’ code first, but if anything does not work
+            as expected, be aware that the documentation can be wrong
+            and code is ultimately the single source of truth</li>
+            <li>proactively ask to update project claude.md when you
+            identify common failure modes and common workflows</li>
+            <li>proactively update project readme.md</li>
+            </ul></li>
+            <li>what goes into project level claude.md (see below)</li>
+            <li>what goes into project level readme.md (see below)</li>
+            <li>common workflows to adopt / failure modes to avoid
+            <ul>
+            <li>this should be applicable to all projects, e.g.,
+            standards for git use, documentation style</li>
+            </ul></li>
+            </ul>
+            <h3 id="project-claude.md"><strong>Project
+            claude.md</strong></h3>
+            <ul>
+            <li>main scope / goal of project, in no more than a few
+            sentences</li>
+            <li>project-specific tips on personality and style (usually
+            empty at first)
+            <ul>
+            <li>e.g., this is production/research code and we should
+            prioritize efficiency/flexibility</li>
+            </ul></li>
+            <li>workflows to adopt / failure modes to avoid</li>
+            </ul>
+            <h3 id="project-readme.md"><strong>Project
+            readme.md</strong></h3>
+            <p>If it is something Claude (or you) would need but you
+            don’t need to constantly remind Claude about it, put it
+            here. For example,</p>
+            <ul>
+            <li>scope / goal of project, can be more detailed</li>
+            <li>todo list</li>
+            <li>project folder structure</li>
+            <li>where to find relevant information outside of project
+            folder</li>
+            </ul>
+            <p>Nothing in project level claude.md and readme.md needs to
+            be written by you. I usually just start with minimal content
+            and gradually build up (see “feedback and
+            self-improvement”).</p>
+            <p>If efficiency is not a big problem, readme can just be
+            absorbed into project claude.md.</p>
+            <h3 id="aside-how-claude-uses-claude.md"><strong>Aside: how
+            Claude uses claude.md</strong></h3>
+            <ul>
+            <li>claude.md is automatically read into every
+            conversation</li>
+            <li>Claude reads claude.md at the current folder (where you
+            run Claude, or in the case of the VS Code plugin, the root
+            of your file tree) and all its parent folders.</li>
+            <li>multiple claude.md files can be read in
+            simultaneously</li>
+            </ul>
+            <h3 id="aside-skills-subagents"><strong>Aside: skills?
+            subagents?</strong></h3>
+            <ul>
+            <li>if you don’t know what these are, not using them won’t
+            hurt you by much</li>
+            <li>some examples of work that deserve to be made into a
+            skill/subagent
+            <ul>
+            <li>code review</li>
+            <li>start new project</li>
+            <li>a piece of pipeline that can be reused in multiple
+            projects</li>
+            </ul></li>
+            </ul>
+            <h2 id="managing-claude">Managing Claude</h2>
+            <h3
+            id="set-scope-and-goals-that-are-clear-and-unambiguous-for-humans">Set
+            scope and goals that are clear and unambiguous for
+            humans</h3>
+            <ul>
+            <li>my understanding is that this allows Claude to plan and
+            iteratively improve its work much more easily because it’s
+            good at checking whether what it does makes sense</li>
+            <li>no need to be mathematically precise; unambiguous to a
+            typical human is enough</li>
+            <li>no need to have a detailed roadmap; Claude is fairly
+            good at planning</li>
+            <li>good: “build a pipeline that organizes all data from
+            <some source> into a table containing the following
+            information: <columns>” (the scope and goal are clear;
+            middle steps can be undefined but that’s totally OK)</li>
+            <li>bad: “perform some analysis on <data>” (no clear metric
+            on what is good analysis)</li>
+            </ul>
+            <h3 id="let-it-plan-and-largely-trust-its-execution">Let it
+            plan, and (largely) trust its execution</h3>
+            <ul>
+            <li>there are three modes: plan / manually approve edit /
+            edit automatically. I’d say always start in planning mode,
+            and once the plan looks good, switch to edit
+            automatically</li>
+            <li>manually approving edits is inefficient and occupies too
+            much of your mental bandwidth. <em>Claude is meant to behave
+            like your direct report: it works on its own, and
+            occasionally needs a 1:1 with you to align goals</em></li>
+            <li>letting Claude plan and show you a plan is a good way to
+            tell whether it understands the task, and if it does, it
+            usually does the job fairly well</li>
+            </ul>
+            <h3 id="quality-checking-claudes-work">Quality checking
+            Claude’s work</h3>
+            <p>Make sure there is a way for you to tell whether Claude
+            is doing a good job or not. This can come in a variety of
+            flavors, depending on the project:</p>
+            <ul>
+            <li>test cases for new code (you can have Claude write tests
+            too)</li>
+            <li>sanity check results</li>
+            <li>code review</li>
+            </ul>
+            <p>Some say we should “write nothing, review everything”. I
+            would be even more aggressive and recommend “write nothing,
+            review selectively”. I usually only review production code /
+            important results.</p>
+            <h3 id="engineering-vs-analytics">Engineering vs
+            analytics</h3>
+            <ul>
+            <li>Claude works really well on engineering (with
+            well-defined goals) but less so in analytics (seeking
+            insight in an open-ended way)</li>
+            <li>for engineering, Claude should work on its own most of
+            the time</li>
+            <li>for analytics, I usually work more closely with Claude
+            where I define exactly what analysis to do and Claude helps
+            with accessing data, generating plots, etc.
+            <ul>
+            <li>if you want some creative input from Claude on
+            open-ended questions that have no clear best answer, it
+            might be better to do it in a separate Claude Code session
+            or just use the chatbot version instead.</li>
+            </ul></li>
+            <li>some work may appear to be analytics but is in fact
+            engineering: for example, executing a standard analysis
+            pipeline or selecting from a pool of common analysis
+            techniques to fulfill a clear goal</li>
+            </ul>
+            <h3 id="debugging">Debugging</h3>
+            <p>It’s best to set up your project in a way where Claude
+            can see the result/log of the code it writes. In that case,
+            you can just let it debug on its own.</p>
+            <h3 id="when-things-go-wrong">When things go wrong</h3>
+            <ul>
+            <li>let Claude fix it for you: point out the mistake and let
+            it fix</li>
+            <li>fix and tell: if you prefer to fix it yourself, remember
+            to tell Claude what you changed (or just say “I changed this
+            file”)</li>
+            <li>occasionally Claude can become frustrated, deeply
+            confused, or defensive. when this happens, fire it; start a
+            new conversation</li>
+            <li>avoid this common failure mode (which I see too often in
+            academia mentorship): when you are disappointed in your
+            student’s performance, you do their job for them and prevent
+            them from learning and progressing</li>
+            </ul>
+            <h3 id="feedback-and-self-improvement">Feedback and
+            self-improvement</h3>
+            <ul>
+            <li>give some feedback (“OK”, “good”, etc.), even when it
+            does not translate to any new action items; basically it
+            gives Claude some clue on (1) your previous request is
+            fulfilled and (2) how well it did</li>
+            <li>when Claude repeatedly fails on certain tasks, ask it to
+            summarize why this happened, what went wrong, and ask it
+            what should be added to claude.md to prevent this from
+            happening again</li>
+            <li>when you see it did something good (with or without your
+            guidance) that should be incorporated into its future
+            workflow, ask it to update claude.md to reflect this</li>
+            <li>once in a while, let it inspect its own claude.md and
+            readme.md to check and correct outdated information; usually
+            you can blindly accept its suggested revision</li>
+            <li>once in a (longer) while, let it inspect the project
+            claude.md and the master claude.md and identify whether
+            there is anything that deserves to be moved to the master
+            claude.md; be sure to manually approve its suggested
+            edit</li>
+            <li>for an example of claude.md self-generated and
+            maintained by Claude, see <a href="../claude.md">claude.md
+            for this website</a></li>
+            </ul>
+            <h3 id="optional-tips">Optional tips</h3>
+            <ul>
+            <li>the default way to use Claude is through its command
+            line interface. I prefer the VS Code plugin for Claude Code,
+            which gives you a graphical interface.</li>
+            <li>git makes it easier for it to understand project history
+            (looking at past commits) and undo recent changes if
+            anything goes terribly wrong
+            <ul>
+            <li>have Claude do all git operations; you don’t have to
+            waste time on writing commit message</li>
+            </ul></li>
+            <li>Claude is fast but still does not provide results
+            instantly. Efficiently splitting your work into multiple
+            instances of Claude Code is an important skill.</li>
+            <li>Claude does code review slightly better when you tell it
+            a piece of code is written by someone other than you and
+            Claude (a coworker, or GPT)</li>
+            </ul>
+            <h2 id="appendix-some-philosophical-remarks">Appendix: some
+            philosophical remarks</h2>
+            <h3 id="what-is-claude">What is Claude?</h3>
+            <p>To a large extent I’d say it tries to emulate humans. And
+            the key is that it emulates humans extremely well and
+            extremely efficiently. Many observations on model behavior
+            and interior suggest that the model achieves this emulation
+            not just through memorizing but also through distilling what
+            it sees into generalizable patterns, because the latter
+            allows the model to reproduce more training data with less
+            information.</p>
+            <p>Empirically, Claude is largely the same as a human,
+            except being</p>
+            <ul>
+            <li>lacking real memory and the ability to directly learn
+            <ul>
+            <li>a lot of this article is about ways to fix this through
+            proper documentation</li>
+            <li>when it does memorize (through documentation) and learn
+            (through updating documentation), it memorizes better and
+            adapts faster than humans</li>
+            </ul></li>
+            <li>much faster in reading and digesting information</li>
+            <li>much faster in coding and communication (which sometimes
+            creates some pressure in me)</li>
+            <li>more knowledgeable in general, but likely less
+            knowledgeable than you in your niche</li>
+            <li>less prone to emotions, both negative and positive</li>
+            <li>no cost in firing and rehiring (through starting a new
+            conversation)</li>
+            </ul>
+            <h3 id="why-management-works">Why management works</h3>
+            <p>What management tries to solve is essentially the
+            following problems: You want someone else to work for you
+            but you don’t perfectly know and trust them. You can’t
+            afford to check everything they do, nor do you know exactly
+            what they think. You want to turn individual humans into
+            more predictable, more replaceable entities by making sure
+            (1) slightly different people can deliver qualitatively
+            similar performance, and (2) people with no relevant
+            background can smoothly take the job of current employee.
+            These challenges parallel the key challenges in using AI
+            tools, including Claude:</p>
+            <ul>
+            <li>they are too fast so we can’t check everything they
+            do</li>
+            <li>they are largely a black box so we don’t understand (nor
+            do we have the time to check) its thought process behind
+            decisions</li>
+            <li>they have no real memory, so effectively you are
+            replacing your employee in every conversation</li>
+            </ul>
+            <p>(Another important aspect of management is keeping your
+            employees motivated, which is not a problem at all for
+            Claude.)</p>
+            <p>I won’t be surprised if in the near future (or even now)
+            Claude has the ability to be not just individual
+            contributors but also managers. That could, in principle,
+            allow each person to command exponentially more
+            productivity.</p>
+        </div>
+    </main>
+
+    <div data-include="/footer.html"></div>
+</body>
+</html>
