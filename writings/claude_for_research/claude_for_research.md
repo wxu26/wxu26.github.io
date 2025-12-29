@@ -93,10 +93,10 @@ Session-level details—"today I will work on X"—don't belong in the research 
 
 Given the grad-student model, what concrete system do we need? Here's the overview:
 
-- **Two documents**: A research note in the form of an evolving paper draft with explicit uncertainty, and claude.md serving as Claude's operating manual with session rituals and project-specific instructions.
+- **Two documents**: A research note in the form of an evolving paper draft with explicit uncertainty, and CLAUDE.md serving as Claude's operating manual with session rituals and project-specific instructions.
 - **Session rituals**: Start each session by evaluating the notes, end by reflecting on what changed and updating them.
 
-Templates: [claude.md template](CLAUDE.md) and [research notes template](RESEARCH_NOTE.md).
+Templates: [CLAUDE.md template](CLAUDE.md) and [research notes template](RESEARCH_NOTE.md).
 
 The rest of this section explains the reasoning behind these choices.
 
@@ -112,9 +112,9 @@ We need Claude to maintain project state across sessions. One option: separate d
 
 A simpler option: **a single primary document** containing the evolving research narrative. We call this the "research notes." Everything of lasting value goes here—thesis, motivation, approaches tried, results, decisions made. The document is structured roughly like the eventual paper, because it *becomes* the eventual paper.
 
-We also need a place for Claude's operational instructions—session rituals, technical notes about code and workflows, communication preferences. This goes in **claude.md**, which Claude reads at session start.
+We also need a place for Claude's operational instructions—session rituals, technical notes about code and workflows, communication preferences. This goes in **CLAUDE.md**, which Claude reads at session start.
 
-So: two documents. The research notes (the primary artifact) and claude.md (the operating manual).
+So: two documents. The research notes (the primary artifact) and CLAUDE.md (the operating manual).
 
 ### What should good research notes look like?
 

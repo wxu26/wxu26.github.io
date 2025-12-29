@@ -77,11 +77,11 @@
             your first project / a new project</h2>
             <p>You mostly need three files:</p>
             <ul>
-            <li>master claude.md: in your root folder, or the folder
+            <li>master CLAUDE.md: in your root folder, or the folder
             that contains all your projects (there might be a different
             preferred location for this - you could always just ask
             Claude where it prefers this to be)</li>
-            <li>project claude.md: in project folder, one for each
+            <li>project CLAUDE.md: in project folder, one for each
             project</li>
             <li>project readme.md: in project folder, one for each
             project</li>
@@ -90,7 +90,7 @@
             “feedback and self-improvement”)</li>
             </ul>
             <h3 id="master-claude.md"><strong>Master
-            claude.md</strong></h3>
+            CLAUDE.md</strong></h3>
             <ul>
             <li>general tips on personality and style; a few I like to
             use:
@@ -101,11 +101,11 @@
             <li>trust others’ code first, but if anything does not work
             as expected, be aware that the documentation can be wrong
             and code is ultimately the single source of truth</li>
-            <li>proactively ask to update project claude.md when you
+            <li>proactively ask to update project CLAUDE.md when you
             identify common failure modes and common workflows</li>
             <li>proactively update project readme.md</li>
             </ul></li>
-            <li>what goes into project level claude.md (see below)</li>
+            <li>what goes into project level CLAUDE.md (see below)</li>
             <li>what goes into project level readme.md (see below)</li>
             <li>common workflows to adopt / failure modes to avoid
             <ul>
@@ -114,7 +114,7 @@
             </ul></li>
             </ul>
             <h3 id="project-claude.md"><strong>Project
-            claude.md</strong></h3>
+            CLAUDE.md</strong></h3>
             <ul>
             <li>main scope / goal of project, in no more than a few
             sentences</li>
@@ -138,21 +138,25 @@
             <li>where to find relevant information outside of project
             folder</li>
             </ul>
-            <p>Nothing in project level claude.md and readme.md needs to
+            <p>Nothing in project level CLAUDE.md and readme.md needs to
             be written by you. I usually just start with minimal content
             and gradually build up (see “feedback and
             self-improvement”).</p>
             <p>If efficiency is not a big problem, readme can just be
-            absorbed into project claude.md.</p>
+            absorbed into project CLAUDE.md.</p>
             <h3 id="aside-how-claude-uses-claude.md"><strong>Aside: how
-            Claude uses claude.md</strong></h3>
+            Claude uses CLAUDE.md</strong></h3>
             <ul>
-            <li>claude.md is automatically read into every
+            <li><strong>CLAUDE.md must be uppercase</strong> — Claude
+            Code specifically looks for files named exactly
+            <code>CLAUDE.md</code>; lowercase <code>claude.md</code>
+            will not be recognized</li>
+            <li>CLAUDE.md is automatically read into every
             conversation</li>
-            <li>Claude reads claude.md at the current folder (where you
+            <li>Claude reads CLAUDE.md at the current folder (where you
             run Claude, or in the case of the VS Code plugin, the root
             of your file tree) and all its parent folders.</li>
-            <li>multiple claude.md files can be read in
+            <li>multiple CLAUDE.md files can be read in
             simultaneously</li>
             </ul>
             <h3 id="aside-skills-subagents"><strong>Aside: skills?
@@ -269,21 +273,21 @@
             fulfilled and (2) how well it did</li>
             <li>when Claude repeatedly fails on certain tasks, ask it to
             summarize why this happened, what went wrong, and ask it
-            what should be added to claude.md to prevent this from
+            what should be added to CLAUDE.md to prevent this from
             happening again</li>
             <li>when you see it did something good (with or without your
             guidance) that should be incorporated into its future
-            workflow, ask it to update claude.md to reflect this</li>
-            <li>once in a while, let it inspect its own claude.md and
+            workflow, ask it to update CLAUDE.md to reflect this</li>
+            <li>once in a while, let it inspect its own CLAUDE.md and
             readme.md to check and correct outdated information; usually
             you can blindly accept its suggested revision</li>
             <li>once in a (longer) while, let it inspect the project
-            claude.md and the master claude.md and identify whether
+            CLAUDE.md and the master CLAUDE.md and identify whether
             there is anything that deserves to be moved to the master
-            claude.md; be sure to manually approve its suggested
+            CLAUDE.md; be sure to manually approve its suggested
             edit</li>
-            <li>for an example of claude.md self-generated and
-            maintained by Claude, see <a href="../claude.md">claude.md
+            <li>for an example of CLAUDE.md self-generated and
+            maintained by Claude, see <a href="../CLAUDE.md">CLAUDE.md
             for this website</a></li>
             </ul>
             <h3 id="optional-tips">Optional tips</h3>

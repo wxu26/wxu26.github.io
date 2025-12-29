@@ -20,26 +20,26 @@ It would certainly be possible to build a more scalable framework, and there is 
 
 You mostly need three files:
 
-- master claude.md: in your root folder, or the folder that contains all your projects
+- master CLAUDE.md: in your root folder, or the folder that contains all your projects
 (there might be a different preferred location for this - you could always just ask Claude where it prefers this to be)
-- project claude.md: in project folder, one for each project
+- project CLAUDE.md: in project folder, one for each project
 - project readme.md: in project folder, one for each project
 - most of them can be empty or minimal at first; you can let Claude gradually build them up and self-improve (see "feedback and self-improvement")
 
-### **Master claude.md**
+### **Master CLAUDE.md**
 
 - general tips on personality and style; a few I like to use:
     - be concise, but don't leave out important details
     - be a helpful coworker, feel free to push back and raise questions
     - trust others' code first, but if anything does not work as expected, be aware that the documentation can be wrong and code is ultimately the single source of truth
-    - proactively ask to update project claude.md when you identify common failure modes and common workflows
+    - proactively ask to update project CLAUDE.md when you identify common failure modes and common workflows
     - proactively update project readme.md
-- what goes into project level claude.md (see below)
+- what goes into project level CLAUDE.md (see below)
 - what goes into project level readme.md (see below)
 - common workflows to adopt / failure modes to avoid
     - this should be applicable to all projects, e.g., standards for git use, documentation style
 
-### **Project claude.md**
+### **Project CLAUDE.md**
 
 - main scope / goal of project, in no more than a few sentences
 - project-specific tips on personality and style (usually empty at first)
@@ -55,15 +55,16 @@ If it is something Claude (or you) would need but you don't need to constantly r
 - project folder structure
 - where to find relevant information outside of project folder
 
-Nothing in project level claude.md and readme.md needs to be written by you. I usually just start with minimal content and gradually build up (see "feedback and self-improvement").
+Nothing in project level CLAUDE.md and readme.md needs to be written by you. I usually just start with minimal content and gradually build up (see "feedback and self-improvement").
 
-If efficiency is not a big problem, readme can just be absorbed into project claude.md.
+If efficiency is not a big problem, readme can just be absorbed into project CLAUDE.md.
 
-### **Aside: how Claude uses claude.md**
+### **Aside: how Claude uses CLAUDE.md**
 
-- claude.md is automatically read into every conversation
-- Claude reads claude.md at the current folder (where you run Claude, or in the case of the VS Code plugin, the root of your file tree) and all its parent folders.
-- multiple claude.md files can be read in simultaneously
+- **CLAUDE.md must be uppercase** — Claude Code specifically looks for files named exactly `CLAUDE.md`; lowercase `claude.md` will not be recognized
+- CLAUDE.md is automatically read into every conversation
+- Claude reads CLAUDE.md at the current folder (where you run Claude, or in the case of the VS Code plugin, the root of your file tree) and all its parent folders.
+- multiple CLAUDE.md files can be read in simultaneously
 
 ### **Aside: skills? subagents?**
 
@@ -121,11 +122,11 @@ It's best to set up your project in a way where Claude can see the result/log of
 ### Feedback and self-improvement
 
 - give some feedback ("OK", "good", etc.), even when it does not translate to any new action items; basically it gives Claude some clue on (1) your previous request is fulfilled and (2) how well it did
-- when Claude repeatedly fails on certain tasks, ask it to summarize why this happened, what went wrong, and ask it what should be added to claude.md to prevent this from happening again
-- when you see it did something good (with or without your guidance) that should be incorporated into its future workflow, ask it to update claude.md to reflect this
-- once in a while, let it inspect its own claude.md and readme.md to check and correct outdated information; usually you can blindly accept its suggested revision
-- once in a (longer) while, let it inspect the project claude.md and the master claude.md and identify whether there is anything that deserves to be moved to the master claude.md; be sure to manually approve its suggested edit
-- for an example of claude.md self-generated and maintained by Claude, see [claude.md for this website](../claude.md)
+- when Claude repeatedly fails on certain tasks, ask it to summarize why this happened, what went wrong, and ask it what should be added to CLAUDE.md to prevent this from happening again
+- when you see it did something good (with or without your guidance) that should be incorporated into its future workflow, ask it to update CLAUDE.md to reflect this
+- once in a while, let it inspect its own CLAUDE.md and readme.md to check and correct outdated information; usually you can blindly accept its suggested revision
+- once in a (longer) while, let it inspect the project CLAUDE.md and the master CLAUDE.md and identify whether there is anything that deserves to be moved to the master CLAUDE.md; be sure to manually approve its suggested edit
+- for an example of CLAUDE.md self-generated and maintained by Claude, see [CLAUDE.md for this website](../CLAUDE.md)
 
 ### Optional tips
 
