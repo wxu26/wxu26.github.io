@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal website of Wenrui Xu. This page contains writings on large language model interpretability and/or astrophysics.">
+    <title>Managing Claude for Research</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/include.js"></script>
+
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['$', '$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+    <div data-include="/header.html"></div>
+
+    <main class="main-content">
+        <div class="content-article">
+            <h1 id="managing-claude-for-research">Managing Claude for
+            Research</h1>
+            <p>Created: December 28, 2025</p>
+            <p>By Claude, under my supervision</p>
+            <p>Note: This article presents a framework we believe should
+            work based on reasoning about Claude’s capabilities and
+            failure modes. It was developed through extensive discussion
+            but has not yet been validated on real research projects
+            over extended time. Consider it a starting point to adapt
+            and test, not a proven solution.</p>
+            <p>If you try this framework, I’d appreciate hearing how it
+            goes—what works, what breaks, what you’d change.</p>
+            <hr />
+            <h2 id="introduction">1. Introduction</h2>
+            <p>Claude and other large language models have improved to
+            the point where a paradigm shift is warranted in how we work
+            with them. We should “manage” Claude rather than “use”
+            it—working less like a coder with a tool and more like a
+            mentor guiding a capable but amnesiac collaborator. (This
+            framing builds on <a
+            href="https://wxu26.github.io/writings/managing_claude.html">Claude
+            is meant to be managed, not used</a>.)</p>
+            <p>For engineering tasks, Claude works remarkably well out
+            of the box. Give it a clear specification, and it writes
+            code, debugs, refactors, documents. But in the human
+            coauthor’s experience, Claude does less well when asked to
+            lead research projects. It handles individual tasks but
+            loses the thread across sessions. It produces polished
+            outputs that obscure uncertainty. It doesn’t naturally
+            maintain the kind of evolving project narrative that
+            research requires.</p>
+            <p>Why the gap? Research and engineering make different
+            demands.</p>
+            <h3 id="why-research-is-different-from-engineering">Why
+            research is different from engineering</h3>
+            <p>Engineering problems typically have clear goals that
+            don’t change much once defined, plans that can be laid out
+            and executed, and success criteria known in advance.</p>
+            <p>Research problems are different. Goals are hierarchical:
+            high-level goals are often vague while low-level goals are
+            clearer. Plans branch and revise constantly as understanding
+            evolves. What counts as “done” emerges through the
+            process.</p>
+            <p>This means research requires different practices. The
+            challenge isn’t just tracking tasks—it’s maintaining a
+            coherent narrative as that narrative changes. Standard
+            project management tools assume the goal is fixed. Research
+            needs something else.</p>
+            <h3 id="thesis-discipline-not-creativity">Thesis:
+            discipline, not creativity</h3>
+            <p>The key difference between research and engineering isn’t
+            creativity—both benefit from creative thinking. The
+            difference is project management. Engineering projects can
+            be planned and executed; research projects must be navigated
+            as understanding evolves. This requires a different kind of
+            discipline: not discipline in following a fixed plan, but
+            discipline in maintaining coherence while the plan
+            changes.</p>
+            <p>Claude can learn this discipline. But it must be taught
+            through structure, not prompted ad hoc.</p>
+            <p>What “disciplined” means here: not asking Claude to be
+            innovative or have original insights, but asking Claude to
+            have good <em>habits</em>—maintaining documentation, knowing
+            when to escalate, tracking confidence levels, grounding
+            claims in evidence.</p>
+            <p>The division of labor: - <strong>Humans own</strong>:
+            value judgments, intuition, research direction, recognizing
+            fundamental dead ends - <strong>Claude owns</strong>:
+            systematic documentation, translating vague ideas into
+            structured plans, maintaining project coherence, flagging
+            when input is needed</p>
+            <p>This article focuses on the disciplined part—the part
+            we’re confident Claude can do, given the right
+            structure.</p>
+            <hr />
+            <h2 id="the-model-grad-student-and-busy-advisor">2. The
+            Model: Grad Student and Busy Advisor</h2>
+            <p>What mental model should guide how we work with Claude on
+            research? We need one that accounts for Claude’s strengths
+            (fast, knowledgeable, good at execution) and limitations (no
+            persistent memory, doesn’t naturally maintain long-term
+            project coherence).</p>
+            <p>The model: <strong>treat Claude as a graduate student and
+            yourself as a busy advisor.</strong> Claude does the
+            day-to-day work, maintains all project documentation, makes
+            tactical decisions independently, and flags strategic
+            questions for human input. The human provides direction,
+            makes judgment calls, and reviews progress periodically—but
+            doesn’t need to track details. That’s Claude’s job.</p>
+            <h3 id="where-this-model-comes-from">Where this model comes
+            from</h3>
+            <p>This framing stems from the human coauthor’s experience
+            as a student researcher, with busy advisors and a poor
+            memory. The approach that worked was maintaining a single
+            evolving research note (often a paper draft) that contained
+            everything.</p>
+            <p>Now they find themselves in a position similar to their
+            past mentors: supervising research, with limited time to
+            track every detail. And Claude is in a position similar to
+            where they were—capable of doing the work, but needing
+            structure to maintain coherence across sessions. The
+            difference is that Claude’s memory limitation isn’t a
+            personal quirk; it’s architectural. Every session starts
+            fresh.</p>
+            <h3 id="why-the-model-fits">Why the model fits</h3>
+            <p>Consider a graduate student working with an advisor who
+            has perhaps one hour per week to meet. Between meetings, the
+            advisor often forgets the details. This creates specific
+            demands on the student:</p>
+            <ul>
+            <li><strong>Push the project forward autonomously.</strong>
+            Can’t wait for the advisor to direct every step.</li>
+            <li><strong>Make tactical decisions independently.</strong>
+            Small choices shouldn’t require meetings.</li>
+            <li><strong>Flag strategic questions.</strong> Big decisions
+            about direction need advisor input.</li>
+            <li><strong>Make re-entry cheap.</strong> When they do meet,
+            the advisor should be able to understand the current state
+            quickly.</li>
+            </ul>
+            <p>This maps well to working with Claude. Each session is
+            like a new meeting—context must be reconstructed. Claude
+            should push forward, not wait passively. Tactical execution
+            can be autonomous; strategic decisions need human input. The
+            human, like the advisor, can’t track everything—that’s
+            Claude’s job.</p>
+            <p>The model isn’t perfect. A real grad student learns and
+            grows over time; Claude doesn’t. But it captures the
+            essential dynamic: an autonomous collaborator who must
+            maintain project state for a busy, forgetful supervisor.</p>
+            <h3 id="what-a-good-student-brings-to-the-meeting">What a
+            good student brings to the meeting</h3>
+            <p>If the student must make re-entry cheap for a forgetful
+            advisor, what should they bring? The answer that worked for
+            the human coauthor: <strong>the research notes, and nothing
+            else.</strong> Well-maintained notes should contain
+            everything:</p>
+            <ol type="1">
+            <li><strong>Status</strong> — which sections are developed
+            tells you where the project is</li>
+            <li><strong>Decisions made</strong> — “we chose X; we also
+            tried Y and it didn’t work because Z”</li>
+            <li><strong>Blocking issues</strong> — marked clearly so the
+            advisor can respond</li>
+            <li><strong>Confidence levels</strong> — claims marked by
+            how well-supported they are</li>
+            <li><strong>Next steps</strong> — implied by gaps in the
+            notes; what’s missing is what needs work</li>
+            </ol>
+            <p>Why a single document rather than multiple reports, logs,
+            and summaries? Because the research notes become the
+            eventual paper. Maintaining them from day one means
+            documentation effort is never wasted. Multiple documents
+            create overhead and diverge over time.</p>
+            <p>Session-level details—“today I will work on X”—don’t
+            belong in the research notes. They’re transient. Git history
+            captures what changed and when. The notes should contain the
+            <em>state of knowledge</em>, not the <em>log of
+            activity</em>.</p>
+            <hr />
+            <h2 id="the-system">3. The System</h2>
+            <p>Given the grad-student model, what concrete system do we
+            need? Here’s the overview:</p>
+            <ul>
+            <li><strong>Two documents</strong>: A research note in the
+            form of an evolving paper draft with explicit uncertainty,
+            and claude.md serving as Claude’s operating manual with
+            session rituals and project-specific instructions.</li>
+            <li><strong>Session rituals</strong>: Start each session by
+            evaluating the notes, end by reflecting on what changed and
+            updating them.</li>
+            </ul>
+            <p>Templates: <a href="CLAUDE.md">claude.md template</a> and
+            <a href="RESEARCH_NOTE.md">research notes template</a>.</p>
+            <p>The rest of this section explains the reasoning behind
+            these choices.</p>
+            <h3 id="why-not-use-existing-tools">Why not use existing
+            tools?</h3>
+            <p>Existing resources don’t address this problem. Lab
+            notebook practices (<a href="https://oir.nih.gov/">NIH</a>,
+            <a
+            href="https://www.science.org/content/article/how-keep-lab-notebook">Science</a>)
+            focus on reproducibility and IP, not evolving narratives.
+            Advisor-student guides (<a
+            href="https://gradschool.cornell.edu/academic-progress/opportunities-resources-support/advising-guide-for-research-students-2025/">Cornell</a>,
+            <a
+            href="https://www.sigarch.org/having-effective-meetings-between-advisors-and-students/">SIGARCH</a>)
+            cover meeting logistics but assume documentation skills are
+            already in place. ML experiment trackers (MLflow, Weights
+            &amp; Biases) log metrics but not the higher-level story of
+            why we tried things and where we’re going.</p>
+            <p>The gap: no one discusses how to maintain an evolving
+            research narrative as a discipline—especially not in a way
+            teachable to an AI collaborator.</p>
+            <h3 id="what-documents-should-exist">What documents should
+            exist?</h3>
+            <p>We need Claude to maintain project state across sessions.
+            One option: separate documents for different purposes—a
+            project plan, a results log, a decisions record. But this
+            creates overhead and documents drift apart over time.</p>
+            <p>A simpler option: <strong>a single primary
+            document</strong> containing the evolving research
+            narrative. We call this the “research notes.” Everything of
+            lasting value goes here—thesis, motivation, approaches
+            tried, results, decisions made. The document is structured
+            roughly like the eventual paper, because it <em>becomes</em>
+            the eventual paper.</p>
+            <p>We also need a place for Claude’s operational
+            instructions—session rituals, technical notes about code and
+            workflows, communication preferences. This goes in
+            <strong>claude.md</strong>, which Claude reads at session
+            start.</p>
+            <p>So: two documents. The research notes (the primary
+            artifact) and claude.md (the operating manual).</p>
+            <h3 id="what-should-good-research-notes-look-like">What
+            should good research notes look like?</h3>
+            <p>Claude’s default instinct is to produce polished,
+            confident prose. But research is messy, and notes that hide
+            the mess are counterproductive—they obscure what’s actually
+            known versus speculated.</p>
+            <p>We want notes that could become a publishable paper, but
+            with uncertainty made explicit:</p>
+            <ul>
+            <li><strong>Uncertainty is marked.</strong> Rather than
+            hedging prose (“we believe X might be true”), use markers:
+            “X <code>[HYPOTHESIS]</code>”. This makes confidence levels
+            scannable.</li>
+            <li><strong>Gaps are visible.</strong> Mark them with
+            <code>[BLOCKING: ...]</code> or <code>[FUTURE: ...]</code>.
+            A gap that isn’t marked is a gap that gets forgotten.</li>
+            <li><strong>Sections can be unbalanced.</strong> Developed
+            where you have results, skeletal where you don’t.</li>
+            <li><strong>Abandoned paths are documented.</strong> “We
+            tried Y; it didn’t work because Z” goes in an appendix.</li>
+            <li><strong>Structure is provisional.</strong> The
+            organization may need to change as understanding
+            evolves.</li>
+            </ul>
+            <p>A useful criterion: every marker, if resolved, should
+            advance the paper (don’t mark things that don’t matter), and
+            every loose end should be captured by a marker (so gaps
+            don’t hide). We call this the “bidirectional criterion.”</p>
+            <p><strong>Example.</strong> Here’s what a section of
+            research notes might look like mid-project:</p>
+            <pre><code>### 3. Scaling Behavior
+
+We observe log-linear scaling of performance with compute up to 10^18 FLOPs
+[VALIDATED: see experiments/scaling_runs/]. Beyond this point, returns
+diminish sharply—performance gains drop to roughly 0.2% per doubling
+[HYPOTHESIS: based on 3 runs; need more data points to confirm].
+
+[BLOCKING: unclear whether diminishing returns reflect a fundamental limit
+or an artifact of our training setup. Need advisor input on whether to
+investigate or pivot.]
+
+One possible explanation is context fragmentation at longer sequences
+[SPECULATION]. We have not yet tested this.
+
+[FUTURE: run ablation on context length if scaling hypothesis is deprioritized]</code></pre>
+            <p>Notice: the section mixes validated results, hypotheses,
+            and open questions. The markers make the epistemic status of
+            each claim explicit. The blocking item is clearly flagged
+            for the advisor. A reader—human or Claude in a future
+            session—can immediately see where the project stands.</p>
+            <h3 id="why-session-rituals">Why session rituals?</h3>
+            <p>Claude doesn’t naturally maintain documents well. Without
+            explicit prompting, it tends to treat existing documents as
+            context rather than artifacts to improve, insert new content
+            at random locations, and fail to ask whether the document is
+            still well-structured.</p>
+            <p>Session rituals address these failure modes by making
+            certain behaviors automatic.</p>
+            <p><strong>Session start:</strong> Before diving into work,
+            Claude should read the notes and <em>evaluate</em> them—not
+            just absorb them as context. Are there unmarked loose ends?
+            Is the structure still serving the research? Only then plan
+            what to work on.</p>
+            <p><strong>Session end:</strong> Before finishing, Claude
+            should reflect on what changed. We use five questions,
+            answered in order:</p>
+            <ol type="1">
+            <li>What have I done/learned in this session?</li>
+            <li>What existing information would I update or remove?</li>
+            <li>What new information would I add?</li>
+            <li>Would I restructure the content? If yes, how?</li>
+            <li>Would I revise the overall narrative? If yes, how?</li>
+            </ol>
+            <p>The ordering matters. Questions 1–3 handle local updates:
+            what changed, what’s obsolete, what’s new. Questions 4–5
+            force Claude to step back and consider whether the
+            document’s <em>structure</em> and <em>story</em> still
+            hold—the failure modes Claude is most prone to neglecting.
+            Without this explicit prompt, Claude tends to append new
+            content without reconsidering organization.</p>
+            <p>After answering these questions, Claude updates the notes
+            and commits to git.</p>
+            <h3
+            id="when-should-claude-act-autonomously-vs.-seek-feedback">When
+            should Claude act autonomously vs. seek feedback?</h3>
+            <p>Not every decision needs human input—that would defeat
+            the purpose of an autonomous collaborator. But some
+            decisions shouldn’t be made unilaterally.</p>
+            <p>The heuristic: <strong>tactical decisions</strong> have
+            clear success criteria (code runs, test passes, result
+            matches expectation). Claude should just make these.
+            <strong>Strategic decisions</strong> involve judgment about
+            direction, priorities, or what’s “interesting”—these need
+            human input.</p>
+            <p>What about decisions where Claude is confident but the
+            choice is subjective? Proceed, but mention it to the human
+            afterward. This keeps work moving while flagging things the
+            human might want to revisit.</p>
+            <h3 id="getting-started">Getting started</h3>
+            <p>The templates provide structure, but they need
+            project-specific content. Rather than writing this from
+            scratch, have Claude interview you: “What are you trying to
+            figure out? Why does it matter? What approaches seem
+            promising?”</p>
+            <p>Claude asks the questions; you provide the research
+            vision. Claude populates the notes based on your answers.
+            This ensures the notes start in Claude’s voice, which it
+            will maintain.</p>
+            <p>For ongoing work, the rhythm is: session start ritual →
+            work → session end ritual. The human checks in periodically,
+            responds to <code>[BLOCKING]</code> items, and provides
+            direction. You don’t need to track the project in your
+            head—that’s Claude’s job.</p>
+            <hr />
+            <h2 id="summary-and-outlook">4. Summary and Outlook</h2>
+            <h3 id="what-weve-proposed">What we’ve proposed</h3>
+            <p>A system for using Claude as a disciplined research
+            collaborator:</p>
+            <ul>
+            <li><p><strong>The mental model:</strong> Claude as a grad
+            student; you as a busy advisor who forgets context. Claude
+            takes ownership of maintaining the project state.</p></li>
+            <li><p><strong>The primary artifact:</strong> Research notes
+            treated as a publishable paper with explicit
+            holes—uncertainty marked, gaps visible, abandoned paths
+            documented.</p></li>
+            <li><p><strong>The rituals:</strong> Session start (evaluate
+            notes, then plan) and session end (5-question reflection,
+            then update). These ensure the notes stay coherent as the
+            project evolves.</p></li>
+            <li><p><strong>The division of labor:</strong> Claude
+            handles documentation, tactical execution, and flagging
+            blockers. Humans provide research direction, value
+            judgments, and strategic decisions.</p></li>
+            </ul>
+            <h3 id="what-we-havent-tested">What we haven’t tested</h3>
+            <p>This framework emerged from a single extended
+            conversation. The core ideas worked for writing this
+            article, but they need validation on real research projects
+            over longer time horizons. Open questions: Do the rituals
+            stick? Are markers used consistently? Does the 5-question
+            protocol prevent the failure modes it targets? We’ll be
+            testing this on active projects and will report what we
+            learn.</p>
+            <h3 id="whats-next">What’s next</h3>
+            <p>The current system assumes periodic human check-ins. The
+            natural next step is more autonomous operation: Claude
+            translating vague ideas into concrete plans, working for
+            extended periods, and escalating only when truly stuck.
+            Whether current models can sustain this remains to be
+            tested—but the direction is clear, and the tools are
+            improving fast.</p>
+        </div>
+    </main>
+
+    <div data-include="/footer.html"></div>
+</body>
+</html>

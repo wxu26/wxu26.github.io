@@ -180,8 +180,9 @@ python3 -m http.server 3000
 - These are different and serve different purposes
 
 ### File Organization
+- **HTML files always go directly in `writings/`** (not in subfolders)
 - Single MD files go directly in `writings/`
-- MD + images: Can be in a folder within `writings/` (Notion export pattern)
+- MD + images: Can be in a subfolder within `writings/` (Notion export pattern), but the generated HTML should be moved to `writings/`
 - Keep Markdown source files for future edits
 
 ## Notes
