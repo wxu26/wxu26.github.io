@@ -10,6 +10,12 @@ If you try this framework, I'd appreciate hearing how it goes—what works, what
 
 ---
 
+## TL;DR
+
+Put the two template files ([CLAUDE.md](claude_for_research/CLAUDE.md) and [RESEARCH_NOTE.md](claude_for_research/RESEARCH_NOTE.md)) in your project folder, launch Claude Code there, and ask Claude what to do next.
+
+---
+
 ## 1. Introduction
 
 Claude and other large language models have improved to the point where a paradigm shift is warranted in how we work with them. We should "manage" Claude rather than "use" it—working less like a coder with a tool and more like a mentor guiding a capable but amnesiac collaborator. (This framing builds on [Claude is meant to be managed, not used](https://wxu26.github.io/writings/managing_claude.html).)
