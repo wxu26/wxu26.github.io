@@ -203,6 +203,12 @@ python3 -m http.server 3000
 - MD + images: Can be in a subfolder within `writings/` (Notion export pattern), but the generated HTML should be moved to `writings/`
 - Keep Markdown source files for future edits
 
+## Session Wrap-up
+
+When the user indicates they want to end the session (e.g., "let's wrap up", "done for now", "that's all"):
+1. **Stop any running servers** launched during the session (e.g., `python3 -m http.server`)
+2. **Check for uncommitted changes** with `git status` and remind the user if there are any
+
 ## Notes
 
 - **GitHub Pages:** Uses `.nojekyll` to serve static HTML without Jekyll processing
