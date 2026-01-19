@@ -71,6 +71,8 @@ wxu26.github.io/
 ├── eddy.jpg              # Cat photo
 ├── .nojekyll             # GitHub Pages config
 ├── .gitignore            # Git config
+├── scripts/              # Build utilities
+│   └── generate_toc.py    # Auto-generate table of contents
 └── writings/             # Research content
     ├── template.html      # Pandoc template
     ├── *.md              # Markdown sources
@@ -124,6 +126,7 @@ wxu26.github.io/
 4. **Claude executes:**
    - Rename file to chosen name
    - Convert to HTML: `pandoc filename.md --template=template.html -o filename.html --mathjax --metadata title="Page Title"`
+   - Generate TOC (if article has 3+ section headings): `python3 scripts/generate_toc.py writings/filename.html`
    - Launch preview server from project root: `python3 -m http.server 8000`
 
 5. **Claude suggests one-sentence summary:**
@@ -140,8 +143,23 @@ wxu26.github.io/
 
 1. Edit the `.md` source file in `writings/`
 2. Re-run Pandoc conversion
-3. Preview changes locally
-4. Commit when satisfied
+3. Re-run TOC generation if headings changed: `python3 scripts/generate_toc.py writings/filename.html`
+4. Preview changes locally
+5. Commit when satisfied
+
+### Table of Contents Generation
+
+The TOC script (`scripts/generate_toc.py`) auto-generates a floating sidebar TOC for articles:
+
+```bash
+python3 scripts/generate_toc.py writings/article.html
+```
+
+**Rules:**
+- TOC is only generated if the article has **3 or more section headings** (excluding title)
+- The script auto-detects the highest heading level used (h1, h2, or h3) and treats it as top-level
+- Running the script multiple times is safe - it removes any existing TOC before generating a new one
+- TOC appears as a floating sidebar on wide screens (≥1400px) and is hidden on narrow screens
 
 ### Modifying Global Styles
 

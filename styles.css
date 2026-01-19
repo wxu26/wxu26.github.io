@@ -123,3 +123,54 @@ footer {
 .article-overview p{
     margin: 0.5em 0 0 0;
 }
+
+/* Table of Contents - floating sidebar */
+.toc {
+    display: none;  /* hidden by default on narrow screens */
+}
+
+@media (min-width: 1400px) {
+    .toc {
+        display: block;
+        position: fixed;
+        left: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 220px;
+        max-height: 80vh;
+        overflow-y: auto;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .toc ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        flex-direction: unset;
+        gap: unset;
+    }
+
+    .toc > ul > li {
+        margin-bottom: 0.5em;
+    }
+
+    .toc ul ul {
+        padding-left: 1em;
+        margin-top: 0.3em;
+    }
+
+    .toc ul ul li {
+        margin-bottom: 0.3em;
+    }
+
+    .toc a {
+        text-decoration: none;
+        color: #666;
+    }
+
+    .toc a:hover {
+        color: #008080;
+    }
+}
