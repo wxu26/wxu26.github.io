@@ -126,6 +126,9 @@ wxu26.github.io/
 4. **Claude executes:**
    - Rename file to chosen name
    - Convert to HTML: `pandoc filename.md --template=template.html -o filename.html --mathjax --metadata title="Page Title"`
+   - Add date line after the `<h1>` title: `<p class="article-date">Created: Month Day, Year</p>`
+     - Format: "Created: February 14, 2026" (no time, just date)
+     - If the Markdown source has a "Created:" line with a timestamp (e.g., from Notion export), strip the time portion
    - Generate TOC (if article has 3+ section headings): `python3 scripts/generate_toc.py writings/filename.html`
    - Launch preview server from project root: `python3 -m http.server 8000`
 
@@ -192,9 +195,16 @@ python3 -m http.server 3000
 - Follow existing pattern: `feature_geometry.md`, `sparse_superposition.md`
 - Avoid spaces and special characters in filenames
 
+### Title Capitalization
+- **Use title case** for all article titles (h1 headings and writings.html entries)
+- Capitalize major words (nouns, verbs, adjectives, adverbs, pronouns)
+- Lowercase minor words (articles, conjunctions, short prepositions: a, an, the, and, but, or, in, on, of, to, for, with, through, etc.)
+- Always capitalize the first word and the first word after a colon
+- Examples: "What Happened to Research Taste?", "42: A Parable on Interpretability"
+
 ### Title vs Heading
 - **Page title** (browser tab): Set via `--metadata title="Managing Claude"`
-- **Article heading** (in HTML body): Can be longer, e.g., "Claude is meant to be managed, not used"
+- **Article heading** (in HTML body): Can be longer, e.g., "Claude Is Meant to Be Managed, Not Used"
 - These are different and serve different purposes
 
 ### File Organization

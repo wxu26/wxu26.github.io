@@ -106,6 +106,12 @@ footer {
     margin: 1.5em 0 0 0;
 }
 
+.article-date {
+    color: #666;
+    margin-bottom: 1.5em;
+}
+
+
 .content-article strong {
     font-weight: 600;
 }

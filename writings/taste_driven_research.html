@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal website of Wenrui Xu. This page contains writings on large language model interpretability and/or astrophysics.">
+    <title>What Happened to Research Taste?</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/include.js"></script>
+
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['$', '$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+    <div data-include="/header.html"></div>
+
+    <main class="main-content">
+        <div class="content-article">
+            <h1 id="what-happened-to-research-taste">What Happened to
+            Research Taste?</h1>
+            <p class="article-date">Created: February 14, 2026</p>
+            <p>Something has changed in how research works—or at least
+            in how it feels.</p>
+            <p>I’ve heard versions of the same unease from theorists
+            across fields. The sense that “good taste”—knowing what’s
+            worth working on, which directions are promising—matters
+            less than it used to. That there’s more randomness in what
+            succeeds. That research feels less like navigation and more
+            like a lottery, or following a herd.</p>
+            <p>Similar frustrations show up online: complaints about
+            “publish or perish” pressures favoring safe, incremental
+            work over ambitious research; discussions of troubling
+            trends in ML scholarship where researchers chase benchmarks
+            and bandwagons; laments that choosing good problems is
+            rarely taught. The grievances vary, but circle a common
+            theme: something about how research directions get chosen
+            feels off.</p>
+            <p>This article tries to give that feeling shape—a frame for
+            what might have shifted, why, and what it might mean.</p>
+            <h2
+            id="taste-driven-vs.-chance-driven-research">Taste-driven
+            vs. chance-driven research</h2>
+            <p>Consider two modes of research, idealized as opposite
+            poles.</p>
+            <p>In <strong>taste-driven research</strong>, you develop a
+            sense of what’s missing, what’s ripe, what’s likely to be
+            fruitful. You follow that signal. You have some model of the
+            field—where the gaps are, where promising peaks might be—and
+            navigate toward them. Progress feels like climbing a
+            gradient.</p>
+            <p>In <strong>chance-driven research</strong>, you pick a
+            direction that’s tractable—often based on what methods you
+            know, what tools are available, what’s doable—and work on
+            it. Sometimes it leads somewhere interesting, sometimes not.
+            Progress feels like random walk: explore, and occasionally
+            stumble onto something good.</p>
+            <p>These are poles on a spectrum. No one does purely
+            taste-driven or purely chance-driven research. But the
+            balance can shift—for an individual over a career, for a
+            field over time, for science as a whole. And the subjective
+            sense of many researchers is that we’ve been shifting away
+            from taste-driven and toward chance-driven.</p>
+            <h2 id="is-this-shift-real">Is this shift real?</h2>
+            <p>How much of this is perception, and how much is real
+            change?</p>
+            <p>I don’t know for sure. One source of ambiguity is that we
+            talk about research in a way that systematically favors the
+            taste-driven story. Read a paper’s introduction and you’ll
+            often find motivated investigation—“we identified this gap,”
+            “this question remained open,” “we hypothesized that.”
+            Researchers describe their work as guided by what
+            <em>should</em> be done, even when it was in fact driven by
+            what methods happened to be available. This preference
+            shapes how we remember past research too, making it hard to
+            know whether things were ever different.</p>
+            <p>There’s also a gap between how science is taught and
+            practiced. The “scientific method” most of us
+            learned—hypothesis first, then experiment, then
+            conclusion—presents research as fundamentally taste-driven.
+            You identify a question, form a prediction, test it. The
+            frame assumes the hard part is knowing what to ask. But
+            whether this ever described how research actually worked is
+            unclear. It may always have been more ideal than reality.
+            (Kuhn made this point decades ago—textbook science
+            systematically distorts how discovery happens.)</p>
+            <p>So part of the frustration may be this: the way we’re
+            taught to think about research doesn’t match how it works,
+            and perhaps never did. That dissonance is something many
+            feel, even without naming it.</p>
+            <p>But I suspect there’s also a real shift—that taste-driven
+            research is genuinely losing ground, not just in perception.
+            The next section offers a hypothesis for why.</p>
+            <h2
+            id="why-taste-driven-research-might-be-losing-ground">Why
+            taste-driven research might be losing ground</h2>
+            <p>My hypothesis: this is less about researchers choosing
+            differently and more about what the market selects for.
+            Chance-driven research has become more economical, and the
+            structural reasons have been accumulating.</p>
+            <p><strong>Growing burden of knowledge.</strong> As fields
+            mature, developing genuine taste—a calibrated sense of
+            what’s important and tractable—requires knowing more. The
+            landscape gets larger, more complex. Harder for anyone to
+            see clearly enough to navigate well. Meanwhile, random walk
+            stays easy: learn what your advisor does, make a random
+            variation, see what happens. (This is closer to evolutionary
+            algorithm than pure random walk, but both share the same
+            spirit—you don’t need the bigger picture.)</p>
+            <p><strong>Expanding researcher population.</strong> More
+            researchers means more parallel exploration. If each does
+            something like random walk, more walkers cover more ground.
+            Wider search becomes more efficient than many people working
+            the same “correct” direction—especially when no one’s
+            confident what correct is.</p>
+            <p><strong>Faster communication and feedback loop.</strong>
+            Results propagate quickly. Promising directions get noticed
+            and amplified. The selection loop tightens: try things,
+            publish, see what gets traction, follow the traction. Fast
+            iteration beats slow deliberation.</p>
+            <p><strong>The field becomes the Bayesian agent.</strong>
+            Individual researchers explore semi-arbitrarily. But the
+            publication-citation-funding system filters—amplifying what
+            works, starving what doesn’t. The taste function has
+            migrated from individuals to collective mechanism. The field
+            does Bayesian search, even if no individual does.</p>
+            <p>This process is self-reinforcing. As collective search
+            improves, individual taste becomes harder to compete with.
+            You can still develop good judgment through deep study—but
+            by the time you develop that judgment, the frontier has
+            moved. You’re perpetually catching up. The lag between
+            understanding and frontier makes taste-driven work
+            increasingly uneconomical.</p>
+            <p>One consequence I’d like to highlight: the typical mode
+            of theoretical work moves from prediction and guidance
+            <em>before</em> new findings to explanation and synthesis
+            <em>after</em> them. The theorist becomes less the navigator
+            and more the mapmaker who arrives after the territory has
+            already been explored.</p>
+            <h2 id="is-this-a-bad-thing">Is this a bad thing?</h2>
+            <p>It depends on what you’re asking about.</p>
+            <p><strong>On the objective side:</strong></p>
+            <p>For the field’s progress, the shift is probably
+            fine—maybe even beneficial. Collective search may be more
+            efficient than individual taste, especially given how hard
+            it’s become to see the whole landscape. Understanding still
+            gets built, just in different order. The old pattern: theory
+            predicts, experiment confirms. The new pattern: experiment
+            discovers, theory explains, further experiment refines. The
+            endpoint is similar; the path is different.</p>
+            <p>Structurally, there may be a real problem, but not the
+            one you’d first expect. The issue isn’t that chance-driven
+            exploration produces less understanding. It’s that later
+            steps, consolidation and theorizing after discovery, may be
+            undersupported. Funding and attention concentrate on the
+            frontier, the next result. Making sense of what’s already
+            found—building maps after territory is explored—gets less
+            reward. There’s a related asymmetry: forming explanatory
+            theories is cheap, but testing them is expensive. In the old
+            theory→verification path, you were forced to put forward
+            predictions that could be checked; wrong theories got weeded
+            out. But explanatory theories that arrive <em>after</em> the
+            data can fit the facts without being truly predictive—and
+            wrong theories that still appear to explain something get
+            cited anyway. The shift in timing creates a quality-control
+            problem.</p>
+            <p><strong>On the subjective side:</strong></p>
+            <p>For some researchers, yes—something is lost. Some find
+            deep satisfaction in identifying good directions: the
+            feeling that judgment matters, that you’re navigating not
+            wandering, that thinking quality shapes outcome quality.
+            When the system shifts toward chance-driven search, this
+            satisfaction becomes harder to find. Not because you’re
+            doing anything wrong, but because what you valued is less
+            rewarded. The connection between taste and outcome weakens.
+            Research feels more like lottery, and some don’t like
+            lotteries.</p>
+            <p>This cuts both ways. Researchers who enjoy stumbling onto
+            something unanticipated might thrive. Surprise becomes more
+            central. And experimentalists may finally get recognition
+            proportional to contribution. The cultural narrative has
+            emphasized theoretical insight; the Physics Nobel has
+            actually gone roughly 2:1 to experimentalists, but you
+            wouldn’t know from how we talk about great science. The
+            current shift might correct an old imbalance.</p>
+            <h2 id="finding-a-way-out">Finding a way out</h2>
+            <p>If you value taste-driven work in this increasingly
+            chance-driven landscape, what are the options? Here are a
+            few directions I can imagine.</p>
+            <p><strong>Go with the current.</strong> Embrace
+            exploration. Shift satisfaction from “I identified a good
+            direction” to “I explored quickly and stumbled onto
+            something interesting.” Learn to enjoy surprises. Accept
+            that outcomes are loosely coupled to judgment, and find a
+            way to be okay with that. This is probably the most
+            practical option for most people. It asks you to change what
+            you want, which is hard, but it aligns you with the
+            current.</p>
+            <p><strong>Try to scale taste.</strong> If chance-driven
+            research wins because it parallelizes, maybe taste-driven
+            research can also become more competitive. The bottleneck
+            for taste-driven work is integration—building a picture
+            coherent enough to identify promising directions before
+            exploring them. This has traditionally been slow, limited by
+            one person’s bandwidth and memory, unable to keep pace with
+            the frontier. But AI might change that. LLMs are good at
+            gathering and sifting information; paired with a
+            researcher’s taste and judgment, they could accelerate
+            integration substantially. More generally, increased
+            connectivity might also enable better ways to articulate and
+            transmit taste and heuristics, or form collaborative taste
+            where small groups with complementary knowledge identify
+            directions none would see alone. The caveat is that I don’t
+            know whether any of this is enough to catch up.</p>
+            <p><strong>Treat it as a hobby.</strong> Do taste-driven
+            work for intrinsic satisfaction, without expecting it to be
+            competitive. Let the field’s efficiency be carried by
+            others. Enjoy identifying good directions, building coherent
+            pictures, even if not the most efficient path. Many valuable
+            activities have become hobbies as they’ve been
+            industrialized—woodworking, painting, amateur astronomy.
+            Taste-driven research could join that list.</p>
+            <h2 id="the-landscape-could-change-again">The landscape
+            could change again</h2>
+            <p>The current situation isn’t permanent. In particular, AI
+            might soon shift the balance unpredictably. AI scales
+            strictly better than humans at exploration—equally
+            parallelizable, and compute grows faster than researcher
+            population. If AI takes over most random walk, humans might
+            find comparative advantage shifting toward taste—judgment
+            calls, synthesis, “what does this mean” questions. Gradient
+            estimation becomes the human contribution, though perhaps a
+            small fraction of the whole. Alternatively, AI could get
+            good at integration too, and we’ll be forced to accept that
+            human research is just a hobby.</p>
+            <p>What would it mean to do taste-driven research well in
+            this landscape? I’m not sure. The answer probably looks
+            different from what most of us were taught.</p>
+            <p>Regardless, there’s something to be said for doing
+            careful, taste-driven work even when the world doesn’t
+            reward it, just like there’s something to be said for
+            woodworking in a world of mass-produced furniture. The
+            meaning is in the practice itself, not in whether it’s
+            economically competitive. Maybe that’s enough. Maybe it
+            always was.</p>
+        </div>
+    
+        <nav class="toc">
+            <ul>
+                <li><a href="#taste-driven-vs.-chance-driven-research">Taste-driven vs. chance-driven research</a></li>
+                <li><a href="#is-this-shift-real">Is this shift real?</a></li>
+                <li><a href="#why-taste-driven-research-might-be-losing-ground">Why taste-driven research might be losing ground</a></li>
+                <li><a href="#is-this-a-bad-thing">Is this a bad thing?</a></li>
+                <li><a href="#finding-a-way-out">Finding a way out</a></li>
+                <li><a href="#the-landscape-could-change-again">The landscape could change again</a></li>
+            </ul>
+        </nav>
+    </main>
+
+    <div data-include="/footer.html"></div>
+</body>
+</html>
