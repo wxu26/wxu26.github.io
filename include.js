@@ -15,6 +15,9 @@ function includeHTML() {
             })
             .then(data => {
                 element.innerHTML = data;
+                // Populate dynamic footer year
+                const yearEl = element.querySelector('#footer-year');
+                if (yearEl) yearEl.textContent = new Date().getFullYear();
             })
             .catch(error => {
                 console.error('Error loading include:', error);
