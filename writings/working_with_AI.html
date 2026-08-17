@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal website of Wenrui Xu. This page contains writings on large language model interpretability and/or astrophysics.">
+    <title>The Psychology of Working With AI</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/include.js"></script>
+
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['$', '$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+    <div data-include="/header.html"></div>
+
+    <main class="main-content">
+        <div class="content-article">
+            <h1 id="the-psychology-of-working-with-ai-in-2026">The
+            Psychology of Working With AI in 2026</h1>
+            <p class="article-date">Created: August 16, 2026</p>
+            <p><em>It was Friday afternoon. I sent out a Claude to make
+            an org chart of my team of ~40 Claude researchers.</em></p>
+            <p><em>But something about it felt off. This was not how I
+            wanted work to be.</em></p>
+            <p>I wrote down these lines back in April, trying to start a
+            post on how AI has reshaped work and the mental challenges
+            of adapting to that shift. But I never got to finish the
+            piece. Things have been changing faster than my
+            understanding and writing could catch up, and there are too
+            many moving parts. But precisely because of how fast things
+            have been changing, I find that this topic deserves timely
+            discussion. So, instead of pulling together a coherent story
+            as I usually try to, I’ll just offer a collection of
+            observations, commentaries, and arguments on scattered
+            topics.</p>
+            <h2
+            id="weve-seen-this-before-but-its-too-fast-this-time">We’ve
+            seen this before, but it’s too fast this time</h2>
+            <p>I do not think the current “AI revolution” is that unique
+            compared to humanity’s past technological revolutions. Its
+            impact, at the end of the day, will probably be similar to
+            what came before — society goes on “normally”, with people
+            taking different jobs and some overall improvement in
+            productivity and (hopefully) well-being. Even the rapid pace
+            of AI’s progress is not that out of place, since it just
+            falls along the past trajectory of each industrial
+            revolution (steam engine, electricity, computer, internet)
+            taking less time than previous ones.</p>
+            <p>What is different is that the human timescale is more
+            fixed, so “just faster” does have a lot of significance, now
+            that the rate of technological progress is much faster than
+            a typical human can absorb. ChatGPT was released in late
+            2022, less than 4 years ago. But now AIs are solving <a
+            href="https://www.quantamagazine.org/why-the-legendary-erdos-problems-are-falling-to-ai-20260803/">Erdős
+            problems</a> and <a
+            href="https://www.anthropic.com/research/riemann-zeta">making
+            progress on the Riemann Hypothesis</a> and <a
+            href="https://www.anthropic.com/claude-mythos-preview-system-card">breaking
+            out of sandboxes</a> and <a
+            href="https://openai.com/index/hugging-face-model-evaluation-security-incident/">collectively
+            hacking major websites to get better scores on evals</a>. In
+            fall 2025, when I just started my current job, Claude was
+            just beginning to become a reasonably good coder and the
+            best practice was “write nothing, review everything”. Six
+            months later I had an org chart of my Claudes and some of
+            them don’t even directly report to me. If you want to
+            maximally harness frontier models’ capability, my estimate
+            is you need to change how you work every three months or so.
+            That’s basically being put in a new job every three months
+            with no onboarding. This speed can cause a variety of
+            issues. It leaves the stressful impression that choices made
+            now have high stakes because they can compound during this
+            rapid progress. It does not allow enough time for education
+            to catch up, so people are given a complex tool with no
+            proper training. It deepens the divide between work and
+            life, as the two now proceed at very different paces.</p>
+            <h2 id="the-adolescence-of-automation">The adolescence of
+            automation</h2>
+            <p>Now (mid 2026) is an awkward moment in automation with
+            AI.</p>
+            <p>Not long ago, AI was great at a few things (coding,
+            casual chat) but significantly sub-human in most things, so
+            it still felt like a more traditional tool that just
+            automates away a few well-defined tasks. It was already
+            mind-blowing, thinking that such a feat is even possible,
+            but in practice it was like any other good tool, and
+            adoption was pretty much pure joy and no effort.</p>
+            <p>In the very distant future (i.e., 2–3 years later, given
+            my distorted sense of time), AI will be good enough that you
+            can basically treat it as a capable person, and either stop
+            working or choose to work on what you enjoy. Or die in
+            poverty if the whole economic system fails to adapt. Either
+            way “how I work” is not something we’d worry about on a
+            day-to-day basis.</p>
+            <p>But it’s hard right now. Now is a time when frontier
+            models are good at nearly everything — but not literally
+            everything. So the nature of working with AI feels less like
+            AI taking away some of my work but more like AI taking away
+            most of my work and dumping something very different on me.
+            Altogether it’s a huge productivity win for sure, but a
+            large part of my work becomes something I don’t enjoy as
+            much — like context engineering, asking Claude to stop
+            writing slop, and constantly jumping back and forth between
+            multiple projects.</p>
+            <p>It is like transitioning from a postdoc to a faculty (or
+            from an IC to a manager, for you tech people), with the
+            exception that you have an infinite supply of capable but
+            annoying students, and that the way they are annoying
+            changes slightly every few months. Note that all of these
+            differences are load-bearing. (Yes, I’m fluent in
+            Claude-speak now.) The infinite supply of “intelligence” and
+            the fact that AI is so good in so many areas give you an
+            urge to keep doing more and pushing the boundary of how much
+            you can automate. Yet once you have pushed far enough you
+            begin to expose issues in the model, and fixing or adapting
+            to those issues becomes your primary job. The fact that
+            model capabilities improve and issues are being fixed
+            actually makes this worse, as these improvements encourage
+            you to push even further and become bothered by different
+            problems every few months. One personal example on this:
+            Claude was never a terrific writer, but it was not a problem
+            when I only used it as a coder. But now, when most of my
+            time is spent reading Claude’s summary and interpretation of
+            nuanced experiments, this causes a lot of (metaphorical and
+            literal) headaches.</p>
+            <h2
+            id="maximizing-efficiency-is-no-longer-maximizing-joy">Maximizing
+            efficiency is no longer maximizing joy</h2>
+            <p>Let me give a slightly more formalized argument on the
+            point above. Consider the efficiency and joy you get at
+            different levels of adoption of some technology (or level of
+            automation). There are two main factors that affect both:
+            the time freed by having the technology do your work for
+            you, and the additional effort of using the technology to do
+            what it cannot do on its own. For more traditional
+            technology, a nice property is that it has a very clear
+            scope of applicability and doing anything beyond this scope
+            is basically impossible. Your calculator doesn’t write
+            emails for you. So both efficiency and joy begin to decrease
+            beyond that scope, and the optimum is clear and aligned: you
+            use the technology for what it can, and nothing more. With
+            AI what gets tricky is that there is no longer a sharp
+            boundary between “can” and “cannot”. Instead, there is a
+            whole spectrum in between. You can go a long way in holding
+            its hand (or wiping its butt) a little more and gain more
+            efficiency. But that could be at the cost of joy, as you are
+            trading your normal work for something you might enjoy less.
+            In summary, this grey area between can and cannot allows the
+            maximum of efficiency to decouple from the maximum of
+            joy.</p>
+            <p>Putting one’s joy in tension with their productivity is
+            nothing new. That’s basically what happens when you decide
+            whether you want to work overtime. But traditionally this
+            tension lies in how hard or how much you work, not how you
+            work, and those of us believing “work smart, not hard” are
+            slow to realize that “work smart” is the new “work
+            hard”.</p>
+            <h2 id="what-even-is-the-meaning-of-work">What even is the
+            meaning of work?</h2>
+            <p>Currently, using AI to work still feels like an
+            amplification of our productivity. You can do more work in
+            the same amount of time, and the math gets better as the
+            fraction of work done by AI increases; your productivity
+            further increases, and you get more job security thanks to
+            that productivity. But there is a catch: once we reach a
+            point where AI can do all of your work, it is no longer an
+            amplification but a pure replacement.</p>
+            <p>In some sense this has already happened. If someone has a
+            specific piece of code to write in mind, and will need to
+            choose between hiring me and using a frontier AI, a year or
+            so ago I think they’d still choose me but now the AI would
+            be the clearly better choice. I haven’t felt this
+            replacement yet only because my work covers a variety of
+            tasks and AI is only replacing some of them, but I doubt
+            that will remain true for long.</p>
+            <p>There might be, of course, futures where a small fraction
+            of work is reserved for humans, for example things we need a
+            human being to take responsibility for whatever the model
+            outputs. But even with that it doesn’t feel quite the same:
+            if all I do is connect a plug in a data center, it’s hard to
+            say I have a strong connection to all the work the AI there
+            produces.</p>
+            <p>So here’s what I’m trying to say. Even if some of us
+            still feel that AI makes them more productive and increases
+            their economic value, it probably won’t be long before
+            virtually all of us become worthless in an economic sense.
+            And the challenge is in accepting that and adapting to
+            that.</p>
+            <p>There is, of course, an economic aspect of it: our
+            society needs to find new ways to keep people alive and well
+            (or in a darker future, decide that this is not necessary)
+            despite them producing no value. But I don’t want to dig
+            into this as people have been talking about this often
+            enough and this issue is already present in our current
+            society where productivity is overly concentrated in a small
+            fraction of people.</p>
+            <p>What I want to focus on is the psychological implications
+            of how we find meaning in work. Right now there’s not much
+            problem in this: yes, many are underpaid due to capitalism,
+            but most do believe their work is valuable. But it becomes
+            very different when what you get to produce is simply not
+            valuable anymore as AI (and robots controlled by AI) already
+            produce more than enough of that.</p>
+            <p>As a species, humans have evolved a tendency to attach
+            some significance to producing something valuable as this
+            can help us survive. But this instinct can hurt once we are
+            no longer capable of producing anything valuable. What do we
+            do then? At a rational level, we can simply say we need to
+            accept the fact that there won’t be much meaning in work
+            anymore and try to find meaning elsewhere, and stop weighing
+            productivity so heavily as a life goal. But we should not
+            ignore the fact that “finding meaning in work” is so deeply
+            ingrained socially (and maybe even genetically) that we
+            can’t simply change our instincts. What we really need is to
+            clearly conceptualize this disconnect between reality and
+            our instincts and find ways to pacify them.</p>
+            <p>It sounds abstract, but it has happened before. The
+            concept of physical exercise is a relatively new thing; it
+            emerged only after, in some societies and communities,
+            humans’ physical labor became so unnecessary that the
+            instinct of our body to move a lot (evolved for hunting and
+            gathering) could not be satisfied. Again, the main
+            difference is just the pace; the adoption of “exercise” as a
+            concept took a few generations but we probably need some
+            form of that to satisfy our urge to find meaning in work
+            much sooner. In fact, we might already have something in
+            place: some hobbies do just that.</p>
+            <h2
+            id="beyond-productivity-you-can-use-ai-to-optimize-nearly-everything-but-you-dont-have-to">Beyond
+            productivity: you can use AI to optimize (nearly)
+            everything, but you don’t have to</h2>
+            <p>There are two extremes I often see these days. Some truly
+            believe that AI can be used to optimize everything and spend
+            a significant fraction of their life doing it. Others
+            dislike that attitude and insist that there are things that
+            AI simply cannot do and some aspects of work and life should
+            remain as they are because they are uniquely human.</p>
+            <p>I think both are making a mistake in assuming a strong
+            causal relation between “AI can optimize everything” and “I
+            should use AI to optimize everything”. In other words, the
+            assumption that optimizing for productivity is a must.</p>
+            <p>And this can explain a lot of anxiety and resentment from
+            both sides. Some, upon realizing that AI does have the
+            potential to take part in pretty much everything, find
+            themselves obliged to make this happen, creating a ton of
+            anxiety from what they don’t do and fatigue from what they
+            actually do. Others, upon feeling the fatigue of having to
+            use AI to optimize everything and (rightfully) rejecting
+            this over-optimization, subconsciously try to justify this
+            choice by claiming that AI can’t help with everything.</p>
+            <p>But allowing that tension — that AI can optimize almost
+            everything yet any single one of us should not be obliged to
+            do that — is the key to both staying open-minded about new
+            technology and respecting the limitations of humans and the
+            notion that we have some meaning in life beyond
+            productivity.</p>
+            <h2 id="on-artisanal-work-control-and-feedback">On artisanal
+            work, control, and feedback</h2>
+            <p>Here is a case study of how one can go beyond
+            productivity and optimize for the joy of work.</p>
+            <p>The type of “traditional” research that I used to do
+            before the AI age has a particular artisanal nature, which
+            makes it quite enjoyable. That artisanal nature, however,
+            seems largely gone as I adopt AI more, and I’d like to
+            understand why.</p>
+            <p>The sense of control could be one key aspect in the joy
+            of artisanal work: you know what’s going to happen, you can
+            make variations the way you like. Even on things where the
+            outcome is inherently random or where the environment could
+            change (e.g., you want different amounts of fuel for
+            ceramics in different weather), what you should do is known.
+            You have a perfect sense of what should be done, and the
+            rest is just execution based on some input (your mood, the
+            weather, etc).</p>
+            <p>But that sense of control is missing once AI does most of
+            my work. The outcome is quite unpredictable, with the AI
+            often failing in surprising ways. Nor do I have the granular
+            control I used to have; if I only have 15 minutes to
+            instruct my Claude to write a report, it’s impossible to
+            make sure every detail is perfect. Overall that just creates
+            a lot of situations where I can see the result not being
+            fully satisfactory but I don’t have an easy way to fix
+            it.</p>
+            <p>Another key difference is the level of feedback you get.
+            In traditional artisanal work there is a tight loop of
+            feedback: you do something, observe the outcome, adjust, and
+            iterate. The key is that you can try out many small
+            perturbations to build a deep intuition of how something
+            should be done.</p>
+            <p>With AI this is a lot harder. I can no longer build that
+            kind of intuition by trying out perturbations, because each
+            segment of work is so long that the variation in the outcome
+            is often dominated by the AI’s own randomness. Moreover, the
+            feedback is getting sparser: I can propose an experiment,
+            and its result will arrive two days later, after I have
+            rotated between ten other projects; I simply don’t retain
+            enough context to meaningfully learn from such feedback.
+            This reminds me of the time when I learned to make pour-over
+            coffee; I only make a single cup a day, and by the next cup
+            I already forget the details of the previous one and can’t
+            reliably compare the outcome. So even now I still don’t know
+            whether I have optimized my brew.</p>
+            <p>However, I don’t think that control and feedback have to
+            be out of reach once one uses AI extensively. The difference
+            is just that these are no longer something that naturally
+            comes with the work, but something one has to explicitly
+            plan the work routine around.</p>
+            <p>Let me be more specific. I think the essence of control
+            and feedback in artisanal work lies in two aspects: One,
+            close observation of outcomes and the resulting intuition on
+            how your actions map to outcomes. Two, knowing what to do
+            even in the face of what you cannot fully control, instead
+            of feeling at a loss. To do the first means that you want to
+            intentionally increase the observability of the project.
+            Being intentional is the key here: AI is capable enough that
+            it can default to only showing you the final result (and, at
+            least for now, often in a low-quality presentation), and
+            anything more requires your explicit ask. So think about
+            what you would need to get good observability, and have your
+            AI follow that standard. For example, I could have a
+            standard format of listing experiment setups and ablation
+            tables, which includes details I find relevant but Claude
+            might forget to list on its own. Or I could ask for a weekly
+            compute report to understand how my Claude has been doing
+            resource management. Generally the goal is that, for any
+            important feedback I get when I work on my own, I can try to
+            have my AI produce that for my review too. And to do the
+            second means spending less effort coming up with ad-hoc
+            solutions and thinking more about general protocols. When
+            Claude is messaging me on five different projects, in what
+            order should I read them? When I see a writeup from Claude,
+            how do I provide feedback? When I notice a recurring error,
+            how do I make sure it doesn’t happen again? Over the past
+            couple of months I have been evolving my work protocol to
+            better answer questions like these, and it does
+            significantly improve my well-being.</p>
+            <p>It is also worth noting that AI is on its own a very good
+            tool for achieving better control and feedback. It can, for
+            example, handle a lot of logistics and allow me to focus on
+            the feedback that matters. It can also synthesize
+            information that me alone would not be able to synthesize
+            easily, like auditing all my past transcripts to find
+            behavior patterns, or gathering experiment data into
+            convenient dashboards. The key is using AI to have more of
+            what you care about, not just to accelerate what the job
+            demands.</p>
+            <h2 id="enjoy-the-moment">Enjoy the moment</h2>
+            <p>We are in a turbulent time. Technology evolves so rapidly
+            that it is hard to make reliable long-term projections on
+            how one’s current choices will impact their life in the long
+            run. When everything is so uncertain, it no longer makes
+            sense to plan extensively for a distant future. Instead,
+            choosing what to do based on personal passion and on whether
+            one would enjoy the process has become the more rational
+            choice.</p>
+            <p>Moreover, this particular turbulent time might play an
+            outsized role in our memory. Whether we end up in pure chaos
+            or happily retire into abundance, I expect us to look back
+            at now, at the late 2020s, as the time when a lot of stories
+            happened. And I hope my memory of this time will be
+            characterized by the fun of exploring new ways to work that
+            suit me and new research areas that attract my interest, not
+            the agony and fatigue of maximizing my productivity and
+            impact.</p>
+        </div>
+    
+        <nav class="toc">
+            <ul>
+                <li><a href="#weve-seen-this-before-but-its-too-fast-this-time">We’ve seen this before, but it’s too fast this time</a></li>
+                <li><a href="#the-adolescence-of-automation">The adolescence of automation</a></li>
+                <li><a href="#maximizing-efficiency-is-no-longer-maximizing-joy">Maximizing efficiency is no longer maximizing joy</a></li>
+                <li><a href="#what-even-is-the-meaning-of-work">What even is the meaning of work?</a></li>
+                <li><a href="#beyond-productivity-you-can-use-ai-to-optimize-nearly-everything-but-you-dont-have-to">Beyond productivity: you can use AI to optimize (nearly) everything, but you don’t have to</a></li>
+                <li><a href="#on-artisanal-work-control-and-feedback">On artisanal work, control, and feedback</a></li>
+                <li><a href="#enjoy-the-moment">Enjoy the moment</a></li>
+            </ul>
+        </nav>
+    </main>
+
+    <div data-include="/footer.html"></div>
+</body>
+</html>

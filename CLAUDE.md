@@ -206,6 +206,7 @@ python3 -m http.server 3000
 - **Page title** (browser tab): Set via `--metadata title="Managing Claude"`
 - **Article heading** (in HTML body): Can be longer, e.g., "Claude Is Meant to Be Managed, Not Used"
 - These are different and serve different purposes
+- **The `writings.html` entry must match the article's `<h1>` exactly** (the full title). Only the browser-tab title may be shortened.
 
 ### File Organization
 - **HTML files always go directly in `writings/`** (not in subfolders)
